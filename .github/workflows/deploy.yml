@@ -4,11 +4,19 @@ on: push
 
 jobs:
     first_jobs:
+        name: First Jobs
         runs-on: ubuntu-latest
 
+        env:
+            NAME: Código Facilito
+
         steps:
-            - name: Hola Mundo
-              run: echo "Hola Mundo"
+            - name: Working Directory
+              run: ls -la
+            - name: Action
+              uses: actions/checkout@v4
+            - name: Working Directory after action
+              run: ls -la
     second_jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         needs: first_jobs
@@ -16,4 +24,4 @@ jobs:
 
         steps:
             - name: Hola Mundo
-              run: echo "Hola Mundo segunco"
+              run: echo "Hola Mundo segundo"
